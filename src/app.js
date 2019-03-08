@@ -12,7 +12,7 @@
 const app = {
     title: 'Indecision app',
     subtitle: 'Put your life in the hands of a computer',
-    options: ['1','2']
+    options: ['1', '2']
 }
 
 const template =
@@ -27,36 +27,35 @@ const template =
 
     </div>;
 
-
-// Create a templateTwo var JSX expression
-// div
-//  h1 -> name
-//  p -> age: your age
-//  p -> location: city
-// Render templateTwo
-
-const user = {
-    name: 'Yonatan',
-    age: 44,
-    location: 'Netanya'
+let count = 0;
+const addOne = () => {
+    count++;
+    renderCounterApp();
 }
-
-
-function getLocation(location) {
-    if (location) {
-        return <p>location: {location}</p>;
+const minusOne = () => {
+    if (count > 0) {
+        count--;
+        renderCounterApp()
     }
 }
 
-const templateTwo = (
-    <div id="template2">
-        <h1>{user.name ? user.name : 'Anonymus'}</h1>
-        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-        {getLocation(user.location)}
-    </div>
-);
-
+const reset = () => {
+    count = 0;
+    renderCounterApp();
+}
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addOne}>+1</button>
+            {count > 0 && <button onClick={minusOne}>-1</button>}
+            {count > 0 && <button onClick={reset}>RESET</button>}
+        </div>
+    );
+    ReactDOM.render(templateTwo, appRoot);
+}
+
+renderCounterApp();
