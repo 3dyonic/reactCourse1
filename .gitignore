@@ -1,0 +1,5 @@
+node_modules/
+.vscode/
+public/scripts/
+yarn-error.log
+yarn.lock
